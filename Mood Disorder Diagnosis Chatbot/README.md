@@ -2,7 +2,8 @@
 In this project, a new form of an AI speaker-based mood disorder diagnosis service is proposed to remove barriers of previous mental counseling systems such as social prejudice against mental illness, and time/space/cost constraints, which were conducted by human health professionals. AI-based mood disorder diagnosis service induces natural emotional responses from users to AI speakers' questions, analyzes the current state of mood based on natural language processing and the Korean emotion dictionary and comprehensively diagnoses mood disorders by examining the degree of sleep and eating disorders, which are typical symptoms of mood disorder.
 
 ## II. Methodology
-![ex_screenshot](./figures/figure_img/process%20of%20mood%20disorder%20diagnosis%20chatbot%20service%20with%20AI%20speaker.jpg) 
+![ex_screenshot](./figures/figure_img/Process%20of%20mood%20disorder%20diagnosis%20chatbot%20service%20with%20AI%20speaker.jpg) 
+
 **Fig1. Process of AI speaker based Psychological Diagnostic Service**
 
 ### 1. 텍스트 기반 감정 인식
@@ -13,6 +14,7 @@ AI 스피커로 인식된 사용자의 반응을 추출하기 위해 구글의 �
 사용자가 AI 스피커에서 서비스를 호출하면, 에이전트는 ‘안녕하세요, 오늘 기분은 어떤가요?’와 같은 질문을 통해 감정 표현을 유도하며 발화한다. 한국어 처리기인 Konlpy 모듈의 Komoran 클래스를 활용하여 사용자의 응답 텍스트를 형태소 처리하였다.  Konlpy 모듈은 형태소를 비롯하여, 어근, 접두사/접미사, 품사 등 주어진 텍스트의 다양한 언어적 속성의 구조를 빠르게 파악하며, 형태소의 뜻과 문맥을 고려하여 품사를 자동적으로 연결시켜준다는 이점이 있다. Konlpy 모듈 중 Komoran 클래스는 로딩시간이 길다는 점에도 불구하고 품사 연결 알고리즘 측면에서 가장 뛰어난 성능을 보여주어 채택하였다.[4]
 
 ![ex_screenshot](./figures/figure_img/sample%20of%20Konlpy%20natural%20language%20processing.png) 
+
 **Fig 2. Sample of Konlpy natural language processing**
 
 #### 1.3. 한국어 감성 사전
@@ -39,8 +41,8 @@ KOSAC한국어 감정 분석 코퍼스와 KNU 한국어 감성사전에 비교�
 - 구글 스프레드 시트
 https://docs.google.com/spreadsheets/d/1fh8clk72yW412m1lIWnHc4LUA8GF4lYHanwSuQe3Bkc/edit#gid=0
 
-![ex_screenshot](./figures/app_screenshots/screenchot_1.jpg) 
-![ex_screenshot](./figures/app_screenshots/screenshot_2.jpg)
+
+<img src="https://github.com/jiminjeong22/Psychological_Diagnosing_Chatbot/blob/master/Mood%20Disorder%20Diagnosis%20Chatbot/figures/app_screenshots/screenchot_1.jpg?raw=true" width="50%"><img src="https://github.com/jiminjeong22/Psychological_Diagnosing_Chatbot/blob/master/Mood%20Disorder%20Diagnosis%20Chatbot/figures/app_screenshots/screenshot_2.jpg?raw=true" width="40%">
 
 **Fig 4. Simulation of Psychological Diagnostic Service on Google Assistant App**
 
