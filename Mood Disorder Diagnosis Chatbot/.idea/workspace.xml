@@ -2,24 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fcc939a-329e-426c-9a4a-e703a2a2cc38" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/AI spekaer (Google Home mini) video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/Sample of Korean Sentiment Dictionary.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/app_screenshots/screenchot_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/app_screenshots/screenshot_2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/app_screenshots/screenshot_3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/data_acheiving_video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/google_assistant_app_video.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/how to develop Dialogflow(Google Assistant) Chatbot app .pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/paper_and_presentation/Development of AI based Mood Disorder Diagnosis Service.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/paper_and_presentation/ICCT2019-Development of an AI speaker-based Mood Disorder Diagnosis Service _Jimin Jeong.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/process of mood disorder diagnosis chatbot service with AI speaker.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figures/sample of Konlpy natural language processing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project_explanation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/~$젝트 진행 설명서.docx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/프로젝트 진행 설명서.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/figures/figure_img/Accumulated psycho-diagnosis data on Google Spread Sheet.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/figures/figure_img/Curve graph of the user's emotional state.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/figures/figure_img/Graph of the user's sleep quality.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579595901589</updated>
       <workItem from="1579595905662" duration="9001000" />
-      <workItem from="1579612588393" duration="2790000" />
+      <workItem from="1579612588393" duration="3689000" />
     </task>
     <servers />
   </component>
