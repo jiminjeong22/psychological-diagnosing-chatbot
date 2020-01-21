@@ -15,9 +15,9 @@ class Sentiment_Analysis:
                 else:
                     self.sentiments[text[0]].append(";".join(text[1:]))
 
-    def calculate_result(self, given_text):
+    def calculate_result(self, text):
         komoran = Komoran()
-        pos_l = list(komoran.pos(given_text))
+        pos_l = list(komoran.pos(text))
 
         # change format to compare with polarity.xlsx
         for i in range(len(pos_l)):
@@ -65,4 +65,4 @@ class Sentiment_Analysis:
 
         print("CURRENT MOOD IS POS:{},NEG:{}, TOTAL:{}".format(POS, NEG, mood))
 
-        return POS, NEG, mood
+        return pos_l, POS, NEG, mood

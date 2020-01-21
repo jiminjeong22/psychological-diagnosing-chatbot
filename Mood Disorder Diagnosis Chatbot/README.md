@@ -42,11 +42,10 @@ KOSAC한국어 감정 분석 코퍼스와 KNU 한국어 감성사전에 비교�
 https://docs.google.com/spreadsheets/d/1fh8clk72yW412m1lIWnHc4LUA8GF4lYHanwSuQe3Bkc/edit#gid=0
 
 
-<img src="https://github.com/jiminjeong22/Psychological_Diagnosing_Chatbot/blob/master/Mood%20Disorder%20Diagnosis%20Chatbot/figures/app_screenshots/screenchot_1.jpg?raw=true" width="50%"><img src="https://github.com/jiminjeong22/Psychological_Diagnosing_Chatbot/blob/master/Mood%20Disorder%20Diagnosis%20Chatbot/figures/app_screenshots/screenshot_2.jpg?raw=true" width="40%">
+<img src="https://github.com/jiminjeong22/Psychological_Diagnosing_Chatbot/blob/master/Mood%20Disorder%20Diagnosis%20Chatbot/figures/app_screenshots/screenchot_1.jpg?raw=true" width="40%"><img src="https://github.com/jiminjeong22/Psychological_Diagnosing_Chatbot/blob/master/Mood%20Disorder%20Diagnosis%20Chatbot/figures/app_screenshots/screenshot_2.jpg?raw=true" width="30%">
 
 **Fig 4. Simulation of Psychological Diagnostic Service on Google Assistant App**
 
- 
 ![ex_screenshot](./figures/figure_img/Accumulated%20psycho-diagnosis%20data%20on%20Google%20Spread%20Sheet.jpg) 
 
 **Fig 5. Accumulated psycho-diagnosis data on Google Spread Sheet**

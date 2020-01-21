@@ -4,10 +4,8 @@ import emoji
 from flask import Flask, request, make_response, jsonify
 
 import threading
-import re
 
-from .module import response
-from .module import sentiment_analysis as sa
+from .module import response, sentiment_analysis as sa, data_storing
 
 app = Flask(__name__)
 log = app.logger
@@ -40,12 +38,11 @@ def webhook():
         # user input text
         text = str(req.get('queryResult').get('queryText'))
 
-        sleep_disorder = 0
         eating_disorder = 0
         how_long = 0
 
         # mood calculation
-        pos, neg, mood = sa.Sentiment_Analysis.calculate_result(text)
+        morph_l, pos, neg, mood = sa.Sentiment_Analysis.calculate_result(text)
 
         # setting mood standard
         negative_standard = 0
@@ -67,98 +64,11 @@ def webhook():
 
         elif len(context_data) == 4:
             question = "sleep"
-            neg_word = ["아니/MAG", "못/MAG", ]
-            pos_word = ["응/IC"]
-            high_frequency = ["많이/NNG", "완전/NNG", "진짜/MAG", "잘/NNG", "피곤/NNG"]
-            low_frequency = ["조금/NNG, 조금/MAG"]
-            how_long = (re.findall("\d+", text))[0]
-            if how_long.isdigit():
-                how_long = int(how_long)
-                if (how_long > 0 and how_long < 4) or (how_long >= 11):
-                    sleep_disorder = -2
-                    res = "저런... 많이 피곤하실 것 같아요! 좀 더 주무셨으면 좋겠어요... 요즘 밥은 잘 드시고 계신가요? "
-                elif (how_long > 3 and how_long < 6) or (how_long > 8 and how_long < 11):
-                    sleep_disorder = -1
-                    res = "저런... 피곤하시겠군요.. 요즘 밥은 잘 드시고 계신가요?"
-                elif how_long == 6:
-                    sleep_disorder = 1
-                    res = "적당히 주무셨군요! 밥은 잘 드셨나요?"
-                else:
-                    sleep_disorder = 2
-                    res = "잘 주무신 것 같아 다행이에요! 밥은 잘 드셨나요?"
-
-            else:
-                how_long = ""
-                for i in range(len(text_l)):
-                    if text_l[i] in neg_word:
-                        if text_l[i] in high_frequency:
-                            res = "저런... 많이 피곤하실 것 같아요! 좀 더 주무셨으면 좋겠어요... 요즘 밥은 잘 드시고 계신가요? "
-                            sleep_disorder = -2
-                        elif text_l[i] in low_frequency:
-                            res = "저런... 피곤하시겠군요.. 요즘 밥은 잘 드시고 계신가요?"
-                            sleep_disorder = -1
-                        else:
-                            res = "저런... 피곤하시겠군요.. 요즘 밥은 잘 드시고 계신가요? "
-                            sleep_disorder = -1
-                    elif text_l[i] in pos_word:
-                        if text_l[i] in high_frequency:
-                            res = "잘 주무신 것 같아 다행이에요! 밥은 잘 드셨나요?"
-                            sleep_disorder = 2
-                        elif text_l[i] in low_frequency:
-                            res = "조금 더 잘 시간이 있으면 좋겠어요. 밥은 잘 드셨나요?"
-                            sleep_disorder = 1
-                        else:
-                            res = "그렇군요! 밥은 잘 드셨나요?"
-                            sleep_disorder = 1
-                    else:
-                        if text_l[i] in high_frequency:
-                            res = "그렇군요! 밥은 잘 드셨나요?"
-                            sleep_disorder = 1
-                        elif text_l[i] in low_frequency:
-                            res = "그렇군요! 밥은 잘 드셨나요?"
-                            sleep_disorder = 1
-                        else:
-                            res = "그렇군요! 밥은 잘 드셨나요??"
-                            sleep_disorder = 1
+            res, sleep_disorder, how_long = respon.sleep_response(text, morph_l)
 
         elif len(context_data) == 5:
             question = "eat"
-            neg_word = ["아니/MAG", "못/MAG", ]
-            pos_word = ["응/IC"]
-            high_frequency = ["많이/NNG", "완전/NNG", "진짜/MAG", "잘/NNG"]
-            low_frequency = ["조금/NNG, 조금/MAG"]
-            for i in range(len(text_l)):
-                if text_l[i] in neg_word:
-                    if text_l[i] in high_frequency:
-                        res = "저런... 밥은 꼭 챙기셔야 해요! 알겠죠?"
-                        eating_disorder = -2
-                    elif text_l[i] in low_frequency:
-                        res = "저런... 밥 꼭 잘 챙겨먹고 다니세요! 알겠죠?"
-                        eating_disorder = -1
-                    else:
-                        res = "저런... 밥 꼭 잘 챙겨먹고 다니세요! 알겠죠?"
-                        eating_disorder = -1
-                elif text_l[i] in pos_word:
-                    if text_l[i] in high_frequency:
-                        res = "좋아요! 앞으로도 밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
-                        eating_disorder = 2
-                    elif text_l[i] in low_frequency:
-                        res = "다행이에요! 밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
-                        eating_disorder = 1
-                    else:
-                        res = "다행이에요! 밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
-                        eating_disorder = 1
-                else:
-                    if text_l[i] in high_frequency:
-                        res = "그런가요?  밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
-                        eating_disorder = 1
-                    elif text_l[i] in low_frequency:
-                        res = "그런가요? :thumbsup: 사람은 밥심이에요! 밥 잘 챙겨먹고 다니세요. 알겠죠?"
-                        eating_disorder = 1
-                    else:
-                        res = "그런가요? 사람은 밥심이에요! 밥 잘 챙겨먹고 다니세요. 알겠죠?"
-                        eating_disorder = 1
-
+            res, eating_disorder = respon.sleep_response(text, morph_l)
 
         else:
             if mood < -1.5:  # 강한 부정
@@ -189,8 +99,8 @@ def webhook():
                 res_num = random.randrange(0, len(res_list))
                 res = res_list[res_num]
 
-        t = threading.Thread(target=Data_Storing,
-                             args=(question, text, POS, NEG, mood, sleep_disorder, how_long, eating_disorder))
+        t = threading.Thread(target=data_storing.Data_Storing.data_storing(),
+                             args=(question, text, pos, neg, mood, sleep_disorder, how_long, eating_disorder))
         t.start()
 
     elif action == 'input.unknown':
@@ -206,8 +116,6 @@ def webhook():
     else:
         log.error('Unexpected action.')
 
-    print("*" * 20)
-    print("\n")
     return make_response(jsonify({'fulfillmentText': res}))
 
 

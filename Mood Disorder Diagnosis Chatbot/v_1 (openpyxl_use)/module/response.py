@@ -1,4 +1,5 @@
 import emoji
+import re
 import random
 
 
@@ -12,6 +13,108 @@ class Response:
         res_num = random.randrange(0, len(self.res_l))
         res = self.res_l[context_n][status][res_num]
         return res
+
+    def suggestion_response(self, context_n, status):
+        res_num = random.randrange(0, len(self.res_l))
+        res = self.res_l[context_n][status][res_num]
+        return res
+
+    def sleep_response(self, text, morph_l):
+        res = ""
+        
+        sleep_disorder = 0
+       
+        # if sleep hours are expressed as numbers
+        how_long = (re.findall("\d+", text))[0]
+        if how_long.isdigit():
+            how_long = int(how_long)
+            if (0 < how_long < 4) or (how_long >= 11):
+                sleep_disorder = -2
+                res = "저런... 많이 피곤하실 것 같아요! 좀 더 주무셨으면 좋겠어요... 요즘 밥은 잘 드시고 계신가요? "
+            elif (3 < how_long < 6) or (8 < how_long < 11):
+                sleep_disorder = -1
+                res = "저런... 피곤하시겠군요.. 요즘 밥은 잘 드시고 계신가요?"
+            elif how_long == 6:
+                sleep_disorder = 1
+                res = "적당히 주무셨군요! 밥은 잘 드셨나요?"
+            else:
+                sleep_disorder = 2
+                res = "잘 주무신 것 같아 다행이에요! 밥은 잘 드셨나요?"
+
+        # if sleep hours are expressed as words
+        else:
+            how_long = ""
+            for i in range(len(morph_l)):
+                if morph_l[i] in self.neg_word:
+                    if morph_l[i] in self.high_frequency:
+                        res = "저런... 많이 피곤하실 것 같아요! 좀 더 주무셨으면 좋겠어요... 요즘 밥은 잘 드시고 계신가요? "
+                        sleep_disorder = -2
+                    elif morph_l[i] in self.low_frequency:
+                        res = "저런... 피곤하시겠군요.. 요즘 밥은 잘 드시고 계신가요?"
+                        sleep_disorder = -1
+                    else:
+                        res = "저런... 피곤하시겠군요.. 요즘 밥은 잘 드시고 계신가요? "
+                        sleep_disorder = -1
+                elif morph_l[i] in self.pos_word:
+                    if morph_l[i] in self.high_frequency:
+                        res = "잘 주무신 것 같아 다행이에요! 밥은 잘 드셨나요?"
+                        sleep_disorder = 2
+                    elif morph_l[i] in self.low_frequency:
+                        res = "조금 더 잘 시간이 있으면 좋겠어요. 밥은 잘 드셨나요?"
+                        sleep_disorder = 1
+                    else:
+                        res = "그렇군요! 밥은 잘 드셨나요?"
+                        sleep_disorder = 1
+                else:
+                    if morph_l[i] in self.high_frequency:
+                        res = "그렇군요! 밥은 잘 드셨나요?"
+                        sleep_disorder = 1
+                    elif morph_l[i] in self.low_frequency:
+                        res = "그렇군요! 밥은 잘 드셨나요?"
+                        sleep_disorder = 1
+                    else:
+                        res = "그렇군요! 밥은 잘 드셨나요??"
+                        sleep_disorder = 1
+        return res, sleep_disorder, how_long
+
+    def eating_response(self, morph_l):
+        res = ""
+
+        eating_disorder = 0
+
+        for i in range(len(morph_l)):
+            if morph_l[i] in self.neg_word:
+                if morph_l[i] in self.high_frequency:
+                    res = "저런... 밥은 꼭 챙기셔야 해요! 알겠죠?"
+                    eating_disorder = -2
+                elif morph_l[i] in self.low_frequency:
+                    res = "저런... 밥 꼭 잘 챙겨먹고 다니세요! 알겠죠?"
+                    eating_disorder = -1
+                else:
+                    res = "저런... 밥 꼭 잘 챙겨먹고 다니세요! 알겠죠?"
+                    eating_disorder = -1
+            elif morph_l[i] in self.pos_word:
+                if morph_l[i] in self.high_frequency:
+                    res = "좋아요! 앞으로도 밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
+                    eating_disorder = 2
+                elif morph_l[i] in self.low_frequency:
+                    res = "다행이에요! 밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
+                    eating_disorder = 1
+                else:
+                    res = "다행이에요! 밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
+                    eating_disorder = 1
+            else:
+                if morph_l[i] in self.high_frequency:
+                    res = "그런가요?  밥은 꼭 잘 챙겨먹고 다니셔야해요! 알겠죠?"
+                    eating_disorder = 1
+                elif morph_l[i] in self.low_frequency:
+                    res = "그런가요? 사람은 밥심이에요! 밥 잘 챙겨먹고 다니세요. 알겠죠?"
+                    eating_disorder = 1
+                else:
+                    res = "그런가요? 사람은 밥심이에요! 밥 잘 챙겨먹고 다니세요. 알겠죠?"
+                    eating_disorder = 1
+                    
+        return res, eating_disorder
 
     def __init__(self):
         self.res_l = []
@@ -83,3 +186,9 @@ class Response:
                 emoji.emojize("그렇군요. 잠은 잘 주무시나요? 몇시간 정도 주무셨어요?", use_aliases=True)
             ]
         }
+
+        self.neg_word = ["아니/MAG", "못/MAG", ]
+        self.pos_word = ["응/IC"]
+
+        self.high_frequency = ["많이/NNG", "완전/NNG", "진짜/MAG", "잘/NNG", "피곤/NNG"]
+        self.low_frequency = ["조금/NNG, 조금/MAG"]
