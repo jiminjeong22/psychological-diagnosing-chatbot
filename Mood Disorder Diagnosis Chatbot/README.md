@@ -80,7 +80,7 @@ https://docs.google.com/spreadsheets/d/1fh8clk72yW412m1lIWnHc4LUA8GF4lYHanwSuQe3
 [1] https://github.com/dialogflow/fulfillment-weather-python/blob/master/main.py
 
 
-
+## 학술
 2019 ICCT 국제 융합 학술대회에 본 연구와 관련하여 논문을 투고하였으며, 게제 승인을 받았다. 
 
  
