@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fcc939a-329e-426c-9a4a-e703a2a2cc38" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/figures/Sentiment_test (for Dialogflow).zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v_1 (openpyxl_use)/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/v_1 (openpyxl_use)/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/v_1 (openpyxl_use)/module/response.py" beforeDir="false" afterPath="$PROJECT_DIR$/v_1 (openpyxl_use)/module/response.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579595901589</updated>
       <workItem from="1579595905662" duration="9001000" />
-      <workItem from="1579612588393" duration="7877000" />
+      <workItem from="1579612588393" duration="9177000" />
     </task>
     <servers />
   </component>
