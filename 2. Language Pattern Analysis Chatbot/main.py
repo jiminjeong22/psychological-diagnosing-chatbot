@@ -1,38 +1,22 @@
 import json
-import random
-from soynlp.word import WordExtractor
-from soynlp.tokenizer import LTokenizer
-from openpyxl import *
+
 from flask import Flask, request, make_response, jsonify
 from datetime import datetime
 import gensim
 from eunjeon import Mecab
 import re
 
+from corpus import Corpus
+
 app = Flask(__name__)
 log = app.logger
 data = []
 
+
 m = Mecab()
 model = gensim.models.Doc2Vec.load("model.model")
 
-wb = load_workbook("./data/" + "corpus.xlsx")
-ws = wb.get_sheet_by_name("All")
-
-def corpus_making():
-    corpus = {}
-    row = 2
-    while (ws.cell(row=row, column=3)).value > 100:
-        if (ws.cell(row=row, column=2)).value in pos_l:
-            corpus[(ws.cell(row=row, column=1)).value] = (
-                (ws.cell(row=row, column=2)).value, (ws.cell(row=row, column=3)).value)  # (Pos,Frequency)
-        row += 1
-    print(len(corpus))
-    return corpus
-
-
-pos_l = ['NNG', 'NNP', 'NP', 'MAG', 'MAJ', 'VCN', 'VA']
-corpus = corpus_making()
+corpus = Corpus.corpus_making()
 
 
 @app.route('/', methods=['POST', 'GET'])
